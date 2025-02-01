@@ -1,0 +1,230 @@
+/* Base styles */
+:root {
+    --primary-color: #4299e1;
+    --primary-hover: #3182ce;
+    --background-color: #f0f4f8;
+    --card-background: #ffffff;
+    --text-color: #2d3748;
+    --border-color: #e2e8f0;
+    --success-background: #c6f6d5;
+    --error-background: #fed7d7;
+    --clue-background: #ebf8ff;
+    --content-background: #e6fffa;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+}
+
+/* Card styles */
+.puzzle-card {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-header h1 {
+    color: var(--primary-color);
+    margin: 0 0 20px 0;
+    font-size: 24px;
+}
+
+/* Theme buttons */
+.theme-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.theme-btn {
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Card content */
+.card-content {
+    padding: 20px;
+}
+
+.points-display {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Options group */
+.options-group {
+    margin: 20px 0;
+}
+
+.option {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.option input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.primary-btn:hover:not(:disabled) {
+    background-color: var(--primary-hover);
+}
+
+.primary-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.secondary-btn:hover:not(:disabled) {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.secondary-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Alerts */
+.alert {
+    padding: 15px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.clue-alert {
+    background-color: var(--clue-background);
+    border: 1px solid var(--primary-color);
+}
+
+.success-alert {
+    background-color: var(--success-background);
+}
+
+.error-alert {
+    background-color: var(--error-background);
+}
+
+/* Content section */
+.content-section {
+    background-color: var(--content-background);
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+/* Utility classes */
+.hidden {
+    display: none;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f1f6;
+    color: #333;
+    text-align: center;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
+
+.header h1 {
+    font-size: 2em;
+}
+
+.mode-selection {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.mode-card {
+    background: #ffe0e9;
+    padding: 15px;
+    border-radius: 10px;
+    width: 45%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.mode-card:hover {
+    background: #ffcad4;
+}
+
+.themes-container {
+    display: none;
+    margin-top: 20px;
+}
+
+.theme-card {
+    background: #dcd6f7;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.theme-card:hover {
+    background: #b5aaf0;
+}
