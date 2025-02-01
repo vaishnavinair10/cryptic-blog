@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptic Blog Landing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to Cryptic Blog</h1>
+            <p>Choose your journey: Create or Explore</p>
+        </div>
+
+        <div class="mode-selection">
+            <div class="mode-card" id="view-mode">
+                <h2>View Content</h2>
+                <p>Explore puzzles and unlock knowledge across different themes</p>
+            </div>
+            <div class="mode-card" id="create-mode">
+                <h2>Create Content</h2>
+                <p>Contribute your own puzzles and share knowledge</p>
+            </div>
+        </div>
+
+        <button class="back-button" id="back-button">Back to Modes</button>
+
+        <div class="themes-container" id="themes-container">
+            <div class="theme-card theme-literature">
+                <h3>Literature</h3>
+                <p>Explore the world of books and stories</p>
+            </div>
+            <div class="theme-card theme-science">
+                <h3>Science</h3>
+                <p>Discover scientific mysteries and facts</p>
+            </div>
+            <div class="theme-card theme-art">
+                <h3>Art</h3>
+                <p>Journey through colors and creativity</p>
+            </div>
+            <div class="theme-card theme-history">
+                <h3>History</h3>
+                <p>Uncover secrets from the past</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptic Blog Puzzles</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="puzzle-card">
+            <div class="card-header">
+                <h1>Cryptic Blog Puzzles</h1>
+                <div class="theme-buttons">
+                    <button class="theme-btn active" data-theme="Literature">Literature</button>
+                    <button class="theme-btn" data-theme="Science">Science</button>
+                    <button class="theme-btn" data-theme="Art">Art</button>
+                    <button class="theme-btn" data-theme="History">History</button>
+                </div>
+            </div>
+            
+            <div class="card-content">
+                <div class="points-display">
+                    <p>Points: <span id="points-value">100</span></p>
+                </div>
+
+                <div class="puzzle-section">
+                    <h3 id="question">Who is the author of the Harry Potter series?</h3>
+                    
+                    <div class="options-group">
+                        <div class="option">
+                            <input type="radio" name="answer" id="option1" value="J.K. Rowling">
+                            <label for="option1">J.K. Rowling</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="answer" id="option2" value="Enid Blyton">
+                            <label for="option2">Enid Blyton</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="answer" id="option3" value="Cassandra Clare">
+                            <label for="option3">Cassandra Clare</label>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="submit-btn" class="primary-btn" disabled>Submit Answer</button>
+                        <button id="clue-btn" class="secondary-btn">Get Clue (20 points)</button>
+                    </div>
+
+                    <div id="clue-alert" class="alert clue-alert hidden">
+                        <p>Clue: This author's real name is Joanne Kathleen.</p>
+                    </div>
+
+                    <div id="feedback-alert" class="alert hidden">
+                        <p id="feedback-message"></p>
+                    </div>
+
+                    <div id="content-section" class="content-section hidden">
+                        <h4>Unlocked Content:</h4>
+                        <p id="basic-content"></p>
+                        <p id="advanced-content" class="hidden"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // DOM Elements
+        const viewMode = document.getElementById('view-mode');
+        const createMode = document.getElementById('create-mode');
+        const themesContainer = document.getElementById('themes-container');
+        const modeSelection = document.querySelector('.mode-selection');
+        const backButton = document.getElementById('back-button');
+        
+        // State Management
+        let currentMode = null;
+        
+        // Theme Data
+        const themes = [
+            { id: 'literature', name: 'Literature', description: 'Explore the world of books and stories' },
+            { id: 'science', name: 'Science', description: 'Discover scientific mysteries and facts' },
+            { id: 'art', name: 'Art', description: 'Journey through colors and creativity' },
+            { id: 'history', name: 'History', description: 'Uncover secrets from the past' }
+        ];
+        
+        // Functions
+        function showThemes() {
+            modeSelection.style.display = 'none';
+            themesContainer.classList.add('show');
+            backButton.style.display = 'block';
+        }
+        
+        function hideThemes() {
+            modeSelection.style.display = 'flex';
+            themesContainer.classList.remove('show');
+            backButton.style.display = 'none';
+            currentMode = null;
+        }
+        
+        function handleThemeSelection(theme) {
+            if (currentMode === 'view') {
+                navigateToViewPage(theme);
+            } else if (currentMode === 'create') {
+                navigateToCreatePage(theme);
+            }
+        }
+        
+        function navigateToViewPage(theme) {
+            // Replace with actual navigation logic
+            alert(`Viewing ${theme} content`);
+            // window.location.href = `/view/${theme.toLowerCase()}`;
+        }
+        
+        function navigateToCreatePage(theme) {
+            // Replace with actual navigation logic
+            alert(`Creating ${theme} content`);
+            // window.location.href = `/create/${theme.toLowerCase()}`;
+        }
+        
+        // Event Listeners
+        viewMode.addEventListener('click', () => {
+            currentMode = 'view';
+            showThemes();
+        });
+        
+        createMode.addEventListener('click', () => {
+            currentMode = 'create';
+            showThemes();
+        });
+        
+        backButton.addEventListener('click', hideThemes);
+        
+        // Add click handlers for theme cards
+        document.querySelectorAll('.theme-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const theme = card.querySelector('h3').textContent;
+                handleThemeSelection(theme);
+            });
+        });
+        
+        // Initialize any necessary setup
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add any initialization code here
+            console.log('Cryptic Blog Landing Page Initialized');
+        });
+        // Puzzle data structure
+        const puzzleData = {
+            Literature: {
+                question: "Who is the author of the Harry Potter series?",
+                options: ["J.K. Rowling", "Enid Blyton", "Cassandra Clare"],
+                correctAnswer: "J.K. Rowling",
+                clue: "This author's real name is Joanne Kathleen.",
+                basicContent: "The Harry Potter series consists of seven main books, starting with 'Harry Potter and the Philosopher's Stone'.",
+                advancedContent: "The series has sold more than 500 million copies worldwide and has been translated into over 80 languages."
+            },
+            // Add more themes and their puzzles here
+        };
+        
+        // Game state
+        let currentState = {
+            points: 100,
+            selectedTheme: 'Literature',
+            showClue: false,
+            selectedAnswer: '',
+            contentUnlocked: false
+        };
+        
+        // DOM Elements
+        const pointsDisplay = document.getElementById('points-value');
+        const themeButtons = document.querySelectorAll('.theme-btn');
+        const submitButton = document.getElementById('submit-btn');
+        const clueButton = document.getElementById('clue-btn');
+        const clueAlert = document.getElementById('clue-alert');
+        const feedbackAlert = document.getElementById('feedback-alert');
+        const feedbackMessage = document.getElementById('feedback-message');
+        const contentSection = document.getElementById('content-section');
+        const basicContent = document.getElementById('basic-content');
+        const advancedContent = document.getElementById('advanced-content');
+        const questionElement = document.getElementById('question');
+        const optionsGroup = document.querySelector('.options-group');
+        
+        // Initialize the game
+        function initializeGame() {
+            updatePointsDisplay();
+            loadPuzzle(currentState.selectedTheme);
+            setupEventListeners();
+        }
+        
+        // Update points display
+        function updatePointsDisplay() {
+            pointsDisplay.textContent = currentState.points;
+        }
+        
+        // Load puzzle based on theme
+        function loadPuzzle(theme) {
+            const puzzle = puzzleData[theme];
+            questionElement.textContent = puzzle.question;
+            
+            // Clear existing options
+            optionsGroup.innerHTML = '';
+            
+            // Create new options
+            puzzle.options.forEach((option, index) => {
+                const optionHtml = `
+                    <div class="option">
+                        <input type="radio" name="answer" id="option${index + 1}" value="${option}">
+                        <label for="option${index + 1}">${option}</label>
+                    </div>
+                `;
+                optionsGroup.insertAdjacentHTML('beforeend', optionHtml);
+            });
+        
+            // Reset puzzle state
+            currentState.showClue = false;
+            currentState.selectedAnswer = '';
+            currentState.contentUnlocked = false;
+            
+            // Reset UI elements
+            clueAlert.classList.add('hidden');
+            feedbackAlert.classList.add('hidden');
+            contentSection.classList.add('hidden');
+            submitButton.disabled = true;
+            clueButton.disabled = false;
+        }
+        
+        // Setup event listeners
+        function setupEventListeners() {
+            // Theme selection
+            themeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    themeButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    currentState.selectedTheme = button.dataset.theme;
+                    loadPuzzle(currentState.selectedTheme);
+                });
+            });
+        
+            // Answer selection
+            optionsGroup.addEventListener('change', (e) => {
+                if (e.target.type === 'radio') {
+                    currentState.selectedAnswer = e.target.value;
+                    submitButton.disabled = false;
+                }
+            });
+        
+            // Submit answer
+            submitButton.addEventListener('click', handleSubmit);
+        
+            // Get clue
+            clueButton.addEventListener('click', handleClueReveal);
+        }
+        
+        // Handle answer submission
+        function handleSubmit() {
+            const puzzle = puzzleData[currentState.selectedTheme];
+            const isCorrect = currentState.selectedAnswer === puzzle.correctAnswer;
+            
+            feedbackAlert.classList.remove('hidden');
+            feedbackAlert.classList.remove('success-alert', 'error-alert');
+            
+            if (isCorrect) {
+                currentState.points += 50;
+                currentState.contentUnlocked = true;
+                feedbackAlert.classList.add('success-alert');
+                feedbackMessage.textContent = "Correct! You've earned 50 points!";
+                updatePointsDisplay();
+                showUnlockedContent();
+            } else {
+                feedbackAlert.classList.add('error-alert');
+                feedbackMessage.textContent = "Incorrect. Try again!";
+            }
+        }
+        
+        // Handle clue reveal
+        function handleClueReveal() {
+            if (currentState.points >= 20) {
+                currentState.points -= 20;
+                updatePointsDisplay();
+                clueAlert.classList.remove('hidden');
+                clueButton.disabled = true;
+            }
+        }
+        
+        // Show unlocked content
+        function showUnlockedContent() {
+            const puzzle = puzzleData[currentState.selectedTheme];
+            contentSection.classList.remove('hidden');
+            basicContent.textContent = puzzle.basicContent;
+            
+            if (currentState.points >= 200) {
+                advancedContent.classList.remove('hidden');
+                advancedContent.textContent = puzzle.advancedContent;
+            } else {
+                advancedContent.classList.add('hidden');
+            }
+        }
+        
+        // Initialize the game when the page loads
+        document.addEventListener('DOMContentLoaded', initializeGame);
+        </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptic Blog</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to Cryptic Blog</h1>
+            <p>Choose your journey: Create or Explore</p>
+        </div>
+
+        <div class="mode-selection">
+            <div class="mode-card" id="view-mode">
+                <h2>View Content</h2>
+                <p>Explore puzzles and unlock knowledge across different themes</p>
+            </div>
+            <div class="mode-card" id="create-mode">
+                <h2>Create Content</h2>
+                <p>Contribute your own puzzles and share knowledge</p>
+            </div>
+        </div>
+
+        <div class="themes-container" id="themes-container">
+            <div class="theme-card theme-literature">
+                <h3>📚 Literary Labyrinth</h3>
+                <p>Explore the world of books and stories</p>
+            </div>
+            <div class="theme-card theme-science">
+                <h3>🔬 Quantum Quest</h3>
+                <p>Discover scientific mysteries and facts</p>
+            </div>
+            <div class="theme-card theme-art">
+                <h3>🎨 Artistic Enigma</h3>
+                <p>Journey through colors and creativity</p>
+            </div>
+            <div class="theme-card theme-history">
+                <h3>🏛️ Timeless Secrets</h3>
+                <p>Uncover secrets from the past</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
